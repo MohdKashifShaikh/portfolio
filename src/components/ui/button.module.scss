@@ -1,0 +1,33 @@
+@import "../../styles/variables";
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.7rem 1.35rem;
+  border-radius: $radius-md;
+  background: $color-primary;
+  color: white;
+  font-weight: 600;
+  box-shadow: $shadow-sm;
+  transition: transform 0.16s ease, box-shadow 0.16s ease;
+}
+
+.btn:hover {
+  transform: translateY(-3px);
+}
+
+.outline {
+  background: transparent;
+  color: var(--text);
+  border: 1px solid rgba(100, 100, 120, 0.08);
+  box-shadow: none;
+  &.dark {
+    // background: rgb(30, 31, 31);
+    border: 1px solid #84d7e1;
+    // border: 1.5px solid rgba(26, 244, 226, 0.08);
+  }
+  > svg {
+    width: 1.85rem;
+  }
+}

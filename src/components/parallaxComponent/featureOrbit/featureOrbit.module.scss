@@ -1,0 +1,432 @@
+@import "../../../styles/variables";
+
+.section {
+  height: 200vh;
+  position: relative;
+  background: radial-gradient(
+      ellipse at center,
+      rgba(132, 215, 225, 0.08) 0%,
+      transparent 50%
+    ),
+    linear-gradient(
+      180deg,
+      transparent 0%,
+      rgba(132, 215, 225, 0.02) 20%,
+      rgba(132, 215, 225, 0.05) 50%,
+      rgba(132, 215, 225, 0.02) 80%,
+      transparent 100%
+    );
+}
+
+.neuralContainer {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  perspective: 1000px;
+}
+
+/* ======================
+   NEURAL GRID BACKGROUND
+   ====================== */
+.neuralGrid {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.gridNode {
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  background: $color-primary;
+  border-radius: 50%;
+  box-shadow: 0 0 4px $color-primary;
+}
+
+/* ======================
+   NEURAL NETWORK CONTAINER
+   ====================== */
+.neuralNetwork {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ======================
+   REMOVED LINES - FOCUSING ON MOBILE RESPONSIVE NODES
+   ====================== */
+
+/* ======================
+   NEURAL NODES
+   ====================== */
+.neuralNode0,
+.neuralNode1,
+.neuralNode2,
+.neuralNode3,
+.neuralNode4,
+.neuralNode5,
+.neuralNode6 {
+  position: absolute;
+  cursor: pointer;
+  z-index: 10;
+  padding: 20px; // Larger padding for stable hover area
+
+  // Perfect centering - the transform in JS handles the positioning
+  transform: translate(-50%, -50%);
+
+  // Create invisible hover zone
+  &::before {
+    content: "";
+    position: absolute;
+    inset: -15px;
+    border-radius: 50%;
+    pointer-events: auto;
+  }
+}
+
+.nodeCore {
+  position: relative;
+  width: 8rem;
+  height: 8rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: radial-gradient(
+      circle at 30% 30%,
+      rgba(255, 255, 255, 0.2),
+      transparent 70%
+    ),
+    var(--glass-bg);
+  backdrop-filter: blur(25px);
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+
+  &:hover {
+    transform: translateZ(30px);
+    border-color: rgba(255, 255, 255, 0.3);
+  }
+}
+
+.nodeIcon {
+  position: relative;
+  z-index: 3;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.1);
+  overflow: hidden;
+}
+
+.techLabel {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  text-align: center;
+  line-height: 1.2;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
+.activityRing {
+  position: absolute;
+  inset: -8px;
+  border: 2px solid;
+  border-radius: 50%;
+  z-index: 1;
+}
+
+.circularProgress {
+  position: absolute;
+  inset: -5px;
+  width: calc(100% + 10px);
+  height: calc(100% + 10px);
+  pointer-events: none;
+  z-index: 1;
+  transform: rotate(-90deg); // Start from top
+}
+
+.progressBackground {
+  opacity: 0.3;
+}
+
+.progressBar {
+  filter: drop-shadow(0 0 4px currentColor);
+  transition: stroke-dashoffset 0.3s ease;
+}
+
+/* ======================
+   NODE TOOLTIP
+   ====================== */
+.nodeTooltip {
+  position: absolute;
+  top: -120px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--glass-bg);
+  backdrop-filter: blur(25px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 16px;
+  padding: 20px;
+  min-width: 200px;
+  text-align: center;
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.2), 0 10px 20px rgba(132, 215, 225, 0.1);
+  z-index: 1000;
+  pointer-events: none; // Prevent tooltip from interfering with hover
+
+  h4 {
+    margin: 0 0 8px 0;
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--text-primary);
+  }
+
+  .category {
+    margin: 0 0 16px 0;
+    font-size: 12px;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .strengthDisplay {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--text-primary);
+  }
+}
+
+/* ======================
+   CENTRAL BRAIN
+   ====================== */
+.centralBrain {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 5;
+}
+
+.brainWaves {
+  position: absolute;
+  inset: -40px;
+  border: 2px solid $color-primary;
+  border-radius: 50%;
+  filter: blur(1px);
+}
+
+.brainCore {
+  width: 8rem;
+  height: 8rem;
+  border-radius: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: radial-gradient(circle at 30% 30%, #84d7e1, transparent 70%),
+    linear-gradient(135deg, #84d7e1, rgba(34, 197, 94, 0.3), rgba(99, 102, 241, 0.3));
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+
+  span {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text-primary);
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+
+    &:first-child {
+      margin-bottom: 2px;
+    }
+
+    &:last-child {
+      font-size: 12px;
+      opacity: 0.8;
+    }
+  }
+}
+
+/* ======================
+   ANIMATIONS
+   ====================== */
+@keyframes neuralPulse {
+  0%,
+  100% {
+    opacity: 0.3;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.8;
+    transform: scale(1.1);
+  }
+}
+
+@keyframes brainActivity {
+  0%,
+  100% {
+    opacity: 0.4;
+    transform: scale(1) rotate(0deg);
+  }
+  50% {
+    opacity: 0.8;
+    transform: scale(1.05) rotate(180deg);
+  }
+}
+
+/* ======================
+   RESPONSIVE DESIGN
+   ====================== */
+@media (max-width: 1024px) {
+  // Removed line styles - focusing on node responsiveness
+
+  .nodeCore {
+    width: 70px;
+    height: 70px;
+  }
+
+  .nodeIcon {
+    width: 45px;
+    height: 45px;
+  }
+
+  .techLabel {
+    font-size: 10px;
+  }
+
+  .brainCore {
+    width: 100px;
+    height: 100px;
+
+    span {
+      font-size: 12px;
+
+      &:last-child {
+        font-size: 10px;
+      }
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  // Removed line styles - focusing on node responsiveness
+  .centralBrain {
+    left: 52% !important;
+  }
+  .neuralNode5,
+  .neuralNode6 {
+    left: 50% !important;
+  }
+  .nodeCore {
+    width: 60px;
+    height: 60px;
+  }
+
+  .nodeIcon {
+    width: 40px;
+    height: 40px;
+  }
+
+  .techLabel {
+    font-size: 9px;
+  }
+
+  .circularProgress {
+    inset: -4px;
+    width: calc(100% + 8px);
+    height: calc(100% + 8px);
+  }
+
+  .brainCore {
+    width: 80px;
+    height: 80px;
+
+    span {
+      font-size: 11px;
+
+      &:last-child {
+        font-size: 9px;
+      }
+    }
+  }
+
+  .nodeTooltip {
+    min-width: 180px;
+    padding: 16px;
+
+    h4 {
+      font-size: 14px;
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .centralBrain {
+    left: 44% !important;
+  }
+  .neuralNode5,
+  .neuralNode6 {
+    left: 43% !important;
+  }
+  .neuralNode2,
+  .neuralNode4 {
+    left: 75% !important;
+  }
+  .nodeCore {
+    width: 50px;
+    height: 50px;
+  }
+
+  .nodeIcon {
+    width: 35px;
+    height: 35px;
+  }
+
+  .techLabel {
+    font-size: 8px;
+  }
+
+  .brainCore {
+    width: 70px;
+    height: 70px;
+
+    span {
+      font-size: 10px;
+
+      &:last-child {
+        font-size: 8px;
+      }
+    }
+  }
+
+  .nodeTooltip {
+    min-width: 160px;
+    padding: 12px;
+    top: -120px;
+
+    h4 {
+      font-size: 13px;
+    }
+
+    .category {
+      font-size: 10px;
+    }
+
+    .connectionList span {
+      font-size: 9px;
+    }
+  }
+}

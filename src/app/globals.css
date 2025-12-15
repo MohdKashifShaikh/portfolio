@@ -1,0 +1,27 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html,
+  body {
+    @apply dark:bg-trueGray-800;
+  }
+}
+:root {
+  --page-bg: #ffffff;
+  --text-primary: #111111;
+  --text-secondary: #555555;
+  --glass-bg: rgba(255, 255, 255, 0.2);
+  --shadow-strong: rgba(0, 0, 0, 0.15);
+}
+
+.dark {
+  --page-bg: #262626;
+  /* --page-bg: #030712; */
+  /* --page-bg: #071022; */
+  --text-primary: #ffffff;
+  --text-secondary: #d0d0d0;
+  --glass-bg: rgba(255, 255, 255, 0.06);
+  --shadow-strong: rgba(0, 0, 0, 0.6);
+}

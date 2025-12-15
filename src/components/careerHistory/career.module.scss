@@ -1,0 +1,185 @@
+.timelineContainer {
+  position: relative;
+  padding: 40px 0;
+  width: 100%;
+  overflow-x: hidden;
+}
+
+.centerLine {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  width: 4px;
+  height: 100%;
+  transform: translateX(-50%);
+  background: #ccc;
+  border-radius: 4px;
+  //   overflow: hidden; // important so fill stays inside
+  overflow: visible;
+}
+
+.progressFill {
+  width: 100%;
+  height: 0;
+  background: linear-gradient(180deg, #0066ff, #44a8ff);
+  border-radius: 4px;
+  --glow-color: rgba(66, 135, 245, 0.4);
+
+  // Apply a glow using the variable
+  box-shadow: 0 0 10px var(--glow-color), 0 0 20px var(--glow-color);
+
+  // The fixed color gradient remains the base fill
+  background: linear-gradient(180deg, #0066ff, #44a8ff);
+  border-radius: 4px;
+
+  transition: box-shadow 0.3s ease; // Optional: Adds a slight smooth transition for color changes
+}
+
+.stepWrapper {
+  position: relative;
+  width: 100%;
+  margin: 30px 0;
+  display: flex;
+
+  &.left {
+    justify-content: flex-end; // Pull card closer
+    padding-right: 52%; // Less push = closer
+  }
+
+  &.right {
+    justify-content: flex-start;
+    padding-left: 52%; // Less push = closer
+  }
+}
+
+.stepContent {
+  width: 320px; /* TRUE CARD SIZE */
+  background: white;
+  padding: 18px 22px;
+  border-radius: 12px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+  position: relative;
+  z-index: 2;
+  animation: fadeSlide 0.6s ease-out;
+
+  &:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 22px rgba(0, 0, 0, 0.15);
+  }
+}
+
+@keyframes fadeSlide {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.marker {
+  position: absolute;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: #cfcfcf;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.8rem;
+  color: #fff;
+  font-weight: bold;
+  top: 15px;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 3;
+  transition: 0.3s ease;
+
+  &.active {
+    background: linear-gradient(145deg, #4287f5, #0066ff);
+    transform: translate(-50%, -50%) scale(1.2);
+    box-shadow: 0px 4px 14px rgba(0, 102, 255, 0.4);
+  }
+
+  &.completed {
+    background: linear-gradient(145deg, #3cc96f, #28a745);
+    box-shadow: 0px 4px 14px rgba(40, 167, 69, 0.4);
+  }
+}
+
+.company {
+  font-weight: bold;
+  color: #444;
+}
+
+.duration {
+  color: #777;
+  font-size: 0.85rem;
+}
+
+@media (max-width: 900px) {
+  .stepWrapper.left,
+  .stepWrapper.right {
+    padding: 0;
+    justify-content: flex-start !important;
+  }
+
+  .centerLine {
+    left: 30px;
+  }
+
+  .marker {
+    left: 30px;
+  }
+
+  .stepContent {
+    // width: 320px;
+    // // ... other styles
+    // position: relative; // Already relative, but this is critical
+    // z-index: 2;
+    // // animation: fadeSlide 0.6s ease-out; // Your keyframe animation (GSAP overrides this)
+
+    // // 🔥 FIX: Ensures transform only affects this element's local space
+    // will-change: transform, opacity;
+
+    // // This might also help, ensuring it's treated as a block for layout:
+    // display: block;
+    width: calc(100% - 60px);
+    margin-left: 60px;
+  }
+}
+:global(.dark) {
+  .timelineContainer {
+    color: #f1f1f1; // Light gray text for contrast
+  }
+  .centerLine {
+    background: #444; // Darker line
+  }
+  .stepContent {
+    background: #1e1e1e; // Dark background for the card
+    box-shadow: 0 4px 16px rgba(255, 255, 255, 0.08); // Subtle white shadow
+    border: 1px solid #333; // Subtle border for definition
+    h3 {
+      color: #fff;
+    }
+    p {
+      color: #ccc;
+    }
+    &:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 22px rgba(255, 255, 255, 0.12);
+    }
+  }
+  .company {
+    color: #bbb; // Slightly brighter than body text
+  }
+  .duration {
+    color: #999; // Lighter gray for less emphasis
+  }
+  .marker {
+    background: #333; // Dark background
+    color: #aaa; // Light number
+  }
+}

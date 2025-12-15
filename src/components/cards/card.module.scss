@@ -1,0 +1,9 @@
+@import "../../styles/variables";
+
+.card {
+  background: var(--surface);
+  padding: 1.25rem;
+  border-radius: 12px;
+  box-shadow: $shadow-sm;
+  color: var(--text);
+}

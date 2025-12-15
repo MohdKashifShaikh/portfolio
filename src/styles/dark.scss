@@ -1,0 +1,22 @@
+/* simple css custom properties for dark mode */
+:root {
+  --bg: #ffffff;
+  --surface: #fbfbff;
+  --text: #0f172a;
+  --muted: #6b7280;
+  --primary: #5a5bff;
+}
+
+.dark {
+  // --bg: #8a4b4b;
+  --surface: #071a2b;
+  --text: #e6eef9;
+  --muted: #9aa8bf;
+  --primary: #7b7cff;
+}
+
+/* convenient utility for backgrounds */
+.bg {
+  background-color: var(--bg);
+  color: var(--text);
+}
