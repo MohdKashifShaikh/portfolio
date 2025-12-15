@@ -5,7 +5,7 @@ import { Suspense, useEffect, useRef, useState } from "react";
 import Galaxy from "./Galaxy";
 import styles from "./hero.module.scss";
 import Image from "next/image";
-import heroImg from "../../../public/images/svg/bro.svg";
+import heroImg from "../../assets/images/svg/bro.svg";
 import LightBlobs from "./LightTheme";
 import FloatingSpheres from "./FloatingSpheres";
 import NameWriter from "./NameWriter";

@@ -1,6 +1,10 @@
 {
   "compilerOptions": {
-    "lib": ["dom", "dom.iterable", "esnext"],
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
     "allowJs": true,
     "skipLibCheck": true,
     "strict": true,
@@ -19,7 +23,9 @@
       }
     ],
     "paths": {
-      "@/*": ["./src/*"]
+      "@/*": [
+        "./src/*"
+      ]
     }
     // "allowSyntheticDefaultImports": true
   },
@@ -29,7 +35,9 @@
     "**/*.tsx",
     ".next/types/**/*.ts",
     ".next/dev/types/**/*.ts",
-    "next.config.ts"
+    "next.config.ts",
+    "dist/types/**/*.ts",
+    "dist/dev/types/**/*.ts"
   ],
   // "exclude": ["node_modules"],
   "exclude": [

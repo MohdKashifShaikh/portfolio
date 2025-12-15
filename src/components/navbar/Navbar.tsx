@@ -1,9 +1,10 @@
 "use client";
+import styles from "./navbar.module.scss";
 import Link from "next/link";
 import ThemeChanger from "../DarkSwitch";
 import Image from "next/image";
+import Logo from "../../assets/images/kashif.png";
 import { Disclosure } from "@headlessui/react";
-import styles from "./navbar.module.scss";
 
 export const Navbar = () => {
   const navigation = [
@@ -29,7 +30,7 @@ export const Navbar = () => {
         <span className="flex items-center space-x-2 text-2xl font-medium text-indigo-500 dark:text-gray-100">
           <span>
             <Image
-              src="/images/kashif.png"
+              src={Logo}
               width="110"
               height="100"
               alt="name"

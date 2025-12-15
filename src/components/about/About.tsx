@@ -1,7 +1,7 @@
 "use client";
 import { motion, useScroll, useTransform } from "framer-motion";
 import styles from "./about.module.scss";
-import aboutImg from "../../../public/images/svg/about.svg";
+import aboutImg from "../../assets/images/svg/about.svg";
 import { useRef, useLayoutEffect } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
