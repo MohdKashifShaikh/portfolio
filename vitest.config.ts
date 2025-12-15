@@ -5,9 +5,9 @@ import path from 'path'
 export default defineConfig({
   plugins: [react()],
   test: {
-    environment: 'jsdom',
-    setupFiles: ['./src/test/setup.ts'],
     globals: true,
+    environment: 'jsdom',
+    setupFiles: ['./src/test/setup.tsx'],
     css: true,
   },
   resolve: {
